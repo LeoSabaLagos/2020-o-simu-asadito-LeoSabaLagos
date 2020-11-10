@@ -9,13 +9,13 @@ class Persona {
 	var elementosCercanos = []
 	var criterioPasarElemento
 	var criterioComer
-	var comidasInsumidas = []
+	var comidasIngeridas = []
 	
 	method posicion() = posicion
 	method elementosCercanos() = elementosCercanos
 	method criterioPasarElemento() = criterioPasarElemento
 	method criterioComer() = criterioComer
-	method comidasInsumidas() = comidasInsumidas
+	method comidasIngeridas() = comidasIngeridas
 	
 	method pedirElementoA(unComensal,unElemento){
 		if(unComensal.noTieneElemento(unElemento))
@@ -53,6 +53,10 @@ class Persona {
 			self.error("La persona NO acepta esa comida")
 	}
 	
-	method comer(unaComida){ comidasInsumidas.add(unaComida) }
+	method comer(unaComida){ comidasIngeridas.add(unaComida) }
+
+	method estaPipon(){
+		comidasIngeridas.any({comida => comida.esPesada()})
+	}
 
 }

@@ -3,6 +3,8 @@ class Comida {
 	var calorias
 	
 	method calorias() = calorias
+
+	method esPesada() = calorias > 500
 }
 
 
