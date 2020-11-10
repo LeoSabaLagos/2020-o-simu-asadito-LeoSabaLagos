@@ -59,4 +59,30 @@ class Persona {
 		comidasIngeridas.any({comida => comida.esPesada()})
 	}
 
+	method laEstaPasandoBien() = self.comioAlgo() and self.objecion()
+	
+	method comioAlgo() = not(comidasIngeridas.isEmpty())
+	
+	method objecion()
+
+}
+
+object osky inherits Persona {
+	override method objecion() = true
+}
+
+object moni inherits Persona {
+	override method objecion() = self.posicion() == 1
+}
+
+object facu inherits Persona {
+	override method objecion() = self.comioCarne()
+
+	method comioCarne() = comidasIngeridas.any({comida => comida.esCarne()})
+}
+
+object vero inherits Persona {
+	override method objecion() = self.noTieneMasDeTresElementosCerca()
+
+	method noTieneMasDeTresElementosCerca() = elementosCercanos.size() <= 3
 }
