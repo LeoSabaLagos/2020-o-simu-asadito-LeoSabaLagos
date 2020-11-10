@@ -1,16 +1,22 @@
 import elementos.*
 import criteriosPasarElementos.*
+import criteriosComer.*
+import comidas.*
 
 class Persona {
 	
 	var posicion
 	var elementosCercanos = []
 	var criterioPasarElemento
+	var criterioComer
+	var comidasInsumidas = []
 	
 	method posicion() = posicion
 	method elementosCercanos() = elementosCercanos
 	method criterioPasarElemento() = criterioPasarElemento
-
+	method criterioComer() = criterioComer
+	method comidasInsumidas() = comidasInsumidas
+	
 	method pedirElementoA(unComensal,unElemento){
 		if(unComensal.noTieneElemento(unElemento))
 			self.error("El comensal al que le pedimos " + unElemento + " NO lo tiene")
@@ -32,12 +38,21 @@ class Persona {
 		elementosCercanos.add(unElemento)
 	}
 
-	method soltarPrimerElementoAMano(unElemento){
+	method soltarPrimerElementoAMano(){
 		self.soltarElemento(self.primerElementoAMano())
 	}
 
 	method primerElementoAMano() = elementosCercanos.first()
 
 	method cambiarPosicion(nuevaPosicion) { posicion = nuevaPosicion }
+	
+	method decidirSiComer(unaComida){
+		if(criterioComer.acepta(unaComida))
+			self.comer(unaComida)
+		else 
+			self.error("La persona NO acepta esa comida")
+	}
+	
+	method comer(unaComida){ comidasInsumidas.add(unaComida) }
 
 }

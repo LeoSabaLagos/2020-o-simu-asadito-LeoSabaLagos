@@ -13,20 +13,21 @@ class CriterioPasarElementos {
 	
 }
 
-class Normal inherits CriterioPasarElementos{
+object normal inherits CriterioPasarElementos{
 
 }
 
-class Sordo inherits CriterioPasarElementos{
+object sordo inherits CriterioPasarElementos{
 
     override method aplicarCriterio(comensalEmisor,comensalReceptor,unElemento){
-        comensalEmisor.soltarPrimerElementoAMano(unElemento)
-        comensalReceptor.recibirElemento(unElemento)
+        comensalReceptor.recibirElemento(comensalEmisor.primerElementoAMano())
+        comensalEmisor.soltarPrimerElementoAMano()
+        
     }
 
 }
 
-class ComerTranquilo inherits CriterioPasarElementos{
+object comerTranquilo inherits CriterioPasarElementos{
 
     override method aplicarCriterio(comensalEmisor,comensalReceptor,unElemento){
         comensalEmisor.elementosCercanos().forEach({elemento => self.hacerIntercambio(comensalEmisor,comensalReceptor,elemento)})
@@ -34,7 +35,7 @@ class ComerTranquilo inherits CriterioPasarElementos{
 
 }
 
-class CambiarPosiciones inherits CriterioPasarElementos{
+object cambiarPosiciones inherits CriterioPasarElementos{
     override method aplicarCriterio(comensalEmisor,comensalReceptor,unElemento){
         super(comensalEmisor,comensalReceptor,unElemento)
         self.intercambiarPosiciones(comensalEmisor,comensalReceptor)
